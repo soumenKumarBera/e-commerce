@@ -4,12 +4,11 @@ import { Carousel } from "@mantine/carousel";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import Button from "@mui/material/Button";
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from "react";
 
-
+import { mens_kurta } from "../../../Data/Mens_Kurta";
 
 const HomeSectionCarousel = () => {
-
   // const carouselRef = useRef(null);
   // const [activeIndex, setActiveIndex] =  useState(0);
 
@@ -22,10 +21,10 @@ const HomeSectionCarousel = () => {
   //   }
 
   //   const syncActiveIndex =(item)=>{
-           
+
   //     setActiveIndex(item);
   //   }
- const [embla, setEmbla] = useState(null);
+  const [embla, setEmbla] = useState(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
   const slidePrev = () => {
@@ -40,72 +39,76 @@ const HomeSectionCarousel = () => {
     setActiveIndex(index);
   };
 
-
   return (
     <div className="shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]   ">
       <div className="relative p-5  ">
         <Carousel
-   getEmblaApi={setEmbla}
+          getEmblaApi={setEmbla}
           slideSize={{ base: "100%", sm: "50%", md: "20%" }}
           slideGap={{ base: 0, sm: "md" }}
-          emblaOptions={{  align: "start"}}
+          emblaOptions={{ align: "start" }}
           withControls={false}
-           onSlideChange={syncActiveIndex}
-   
+          onSlideChange={syncActiveIndex}
         >
-          {Array.from({ length: 8 }).map((_, index) => (
+          {mens_kurta.map((item, index) => (
             <Carousel.Slide key={index}>
-              <HomeSectionCard />
+              <HomeSectionCard {...item} />
             </Carousel.Slide>
           ))}
         </Carousel>
 
-        <Button
-        onClick={slideNext}
-          variant="contained"
-          radius="xl"
-          sx={{
-            position: "absolute",
-            top: "8rem",
-            right: "0rem",
-            transform: "translateX(50%) rotate(90deg)",
-            bgcolor: "white",
-            "&:hover": {
-              bgcolor: "blue",
-              color: "white",
-            },
-          }}
-          className="z-50 bg-white "
-          aria-label="next"
-        >
-          <KeyboardArrowLeftIcon
-            sx={{ transform: "rotate(90deg)", color: "black" }}
-          />
-        </Button>
+        {activeIndex != mens_kurta.length - 5 && (
+          <Button
+            onClick={slideNext}
+            variant="contained"
+            radius="xl"
+            sx={{
+              position: "absolute",
+              top: "8rem",
+              right: "0rem",
+              transform: "translateX(50%) rotate(90deg)",
+              bgcolor: "white",
+              "&:hover": {
+                bgcolor: "blue",
+                color: "white",
+              },
+            }}
+            className="z-50 bg-white "
+            aria-label="next"
+          >
+            <KeyboardArrowLeftIcon
+              sx={{ transform: "rotate(90deg)", color: "black" }}
+            />
+          </Button>
+        )}
 
-        <Button
-        onClick={slidePrev}
-          variant="contained"
-          radius="xl"
-          sx={{
-            position: "absolute",
-            top: "8rem",
-            left: "0rem",
-            transform: "translateX(-50%) rotate(-90deg)",
-            bgcolor: "white",
-            "&:hover": {
-              bgcolor: "blue",
-              color: "white",
-            },
-          }}
-          className="z-50 bg-white"
-          aria-label="next"
-        >
-          <KeyboardArrowLeftIcon
-            sx={{ transform: "rotate(90deg)", color: "black" }}
-          />
-        </Button>
+        {activeIndex != 0 && (
+          <Button
+            onClick={slidePrev}
+            variant="contained"
+            radius="xl"
+            sx={{
+              position: "absolute",
+              top: "8rem",
+              left: "0rem",
+              transform: "translateX(-50%) rotate(-90deg)",
+              bgcolor: "white",
+              "&:hover": {
+                bgcolor: "blue",
+                color: "white",
+              },
+            }}
+            className="z-50 bg-white"
+            aria-label="next"
+          >
+            <KeyboardArrowLeftIcon
+              sx={{ transform: "rotate(90deg)", color: "black" }}
+            />
+          </Button>
+        )}
       </div>
+
+      
     </div>
   );
 };
