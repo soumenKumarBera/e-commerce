@@ -4,10 +4,9 @@ import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import Button from "@mui/material/Button";
 const HomeSectionCarousel = () => {
   return (
-    <div className="relative px-4 lg:px-8">
-      <div className="relative p-5">
+    <div className="shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]   ">
+      <div className="relative p-5  ">
         <Carousel
-          withIndicators
           slideSize={{ base: "100%", sm: "50%", md: "20%" }}
           slideGap={{ base: 0, sm: "md" }}
           emblaOptions={{ loop: true, align: "start" }}
@@ -18,21 +17,51 @@ const HomeSectionCarousel = () => {
               <HomeSectionCard />
             </Carousel.Slide>
           ))}
-
-          {/* <button
-            onClick={() => embla?.scrollPrev()}
-            className="absolute left-2 top-1/2 z-50 -translate-y-1/2 rounded-full bg-white p-2 shadow-md"
-          >
-            <KeyboardArrowLeftIcon />
-          </button> */}
-          <Button variant="containt" className="z-50" sx={{position:"absolute", top:'8rem', right:'0rem', transform:'translatteX(50%) rotate(90deg)'}}  aria-label="next">
-
-  <KeyboardArrowLeftIcon />
-
-          </Button>
-
-          {/* ...other slides */}
         </Carousel>
+
+        <Button
+          variant="contained"
+          radius="xl"
+          sx={{
+            position: "absolute",
+            top: "8rem",
+            right: "0rem",
+            transform: "translateX(50%) rotate(90deg)",
+            bgcolor: "white",
+            "&:hover": {
+              bgcolor: "blue",
+              color: "white",
+            },
+          }}
+          className="z-50 bg-white "
+          aria-label="next"
+        >
+          <KeyboardArrowLeftIcon
+            sx={{ transform: "rotate(90deg)", color: "black" }}
+          />
+        </Button>
+
+        <Button
+          variant="contained"
+          radius="xl"
+          sx={{
+            position: "absolute",
+            top: "8rem",
+            left: "0rem",
+            transform: "translateX(-50%) rotate(-90deg)",
+            bgcolor: "white",
+            "&:hover": {
+              bgcolor: "blue",
+              color: "white",
+            },
+          }}
+          className="z-50 bg-white"
+          aria-label="next"
+        >
+          <KeyboardArrowLeftIcon
+            sx={{ transform: "rotate(90deg)", color: "black" }}
+          />
+        </Button>
       </div>
     </div>
   );
