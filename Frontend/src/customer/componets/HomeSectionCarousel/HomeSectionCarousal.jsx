@@ -1,16 +1,57 @@
+import { Progress } from "@mantine/core";
 import HomeSectionCard from "../HomeSectionCard/HomeSectionCard";
 import { Carousel } from "@mantine/carousel";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import Button from "@mui/material/Button";
+
+import { useCallback, useEffect, useState } from 'react';
+
+
+
 const HomeSectionCarousel = () => {
+
+  // const carouselRef = useRef(null);
+  // const [activeIndex, setActiveIndex] =  useState(0);
+
+  //   const slidePrev = () => {
+  //     setActiveIndex(activeIndex - 1);
+  //   }
+
+  //    const slideNext = () => {
+  //     setActiveIndex(activeIndex + 1);
+  //   }
+
+  //   const syncActiveIndex =(item)=>{
+           
+  //     setActiveIndex(item);
+  //   }
+ const [embla, setEmbla] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const slidePrev = () => {
+    embla.scrollPrev();
+  };
+
+  const slideNext = () => {
+    embla.scrollNext();
+  };
+
+  const syncActiveIndex = (index) => {
+    setActiveIndex(index);
+  };
+
+
   return (
     <div className="shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]   ">
       <div className="relative p-5  ">
         <Carousel
+   getEmblaApi={setEmbla}
           slideSize={{ base: "100%", sm: "50%", md: "20%" }}
           slideGap={{ base: 0, sm: "md" }}
-          emblaOptions={{ loop: true, align: "start" }}
+          emblaOptions={{  align: "start"}}
           withControls={false}
+           onSlideChange={syncActiveIndex}
+   
         >
           {Array.from({ length: 8 }).map((_, index) => (
             <Carousel.Slide key={index}>
@@ -20,6 +61,7 @@ const HomeSectionCarousel = () => {
         </Carousel>
 
         <Button
+        onClick={slideNext}
           variant="contained"
           radius="xl"
           sx={{
@@ -42,6 +84,7 @@ const HomeSectionCarousel = () => {
         </Button>
 
         <Button
+        onClick={slidePrev}
           variant="contained"
           radius="xl"
           sx={{
