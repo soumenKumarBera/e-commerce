@@ -6,6 +6,7 @@ import "@mantine/core/styles.css";
 // ‼️ import carousel styles after core package styles
 import "@mantine/carousel/styles.css";
 import HomePage from "./customer/pageas/HomePage/HomePage";
+import Footer from "./customer/componets/Footer/Footer";
 
 const App =() => {
   return <MantineProvider>
@@ -14,6 +15,8 @@ const App =() => {
       <div>
         <HomePage />
       </div>
+
+      <Footer />
       
      
   </MantineProvider>

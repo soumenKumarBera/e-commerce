@@ -6,9 +6,7 @@ import Button from "@mui/material/Button";
 
 import { useCallback, useEffect, useState } from "react";
 
-import { mens_kurta } from "../../../Data/Mens_Kurta";
-
-const HomeSectionCarousel = () => {
+const HomeSectionCarousel = (props ) => {
   // const carouselRef = useRef(null);
   // const [activeIndex, setActiveIndex] =  useState(0);
 
@@ -41,6 +39,8 @@ const HomeSectionCarousel = () => {
 
   return (
     <div className="shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]   ">
+      <h2 className="text-2xl font-extrabold text-gray-800 py-5">{props.sectionName}</h2>
+      
       <div className="relative p-5  ">
         <Carousel
           getEmblaApi={setEmbla}
@@ -50,14 +50,14 @@ const HomeSectionCarousel = () => {
           withControls={false}
           onSlideChange={syncActiveIndex}
         >
-          {mens_kurta.map((item, index) => (
+          {props.data.map((item, index) => (
             <Carousel.Slide key={index}>
               <HomeSectionCard {...item} />
             </Carousel.Slide>
           ))}
         </Carousel>
 
-        {activeIndex != mens_kurta.length - 5 && (
+        {activeIndex < props.data.length - 5 && (
           <Button
             onClick={slideNext}
             variant="contained"
