@@ -217,7 +217,7 @@ const ProductDetails = () => {
 
                 <Button
                   variant="contained"
-                  sx={{ px: "2rem", py: "1rem", bgcolor: "#9155fd" }}
+                  sx={{ px: "2rem", py: "1rem", bgcolor: "#9155fd", mt:2 }}
                 >
                   Add To Cart
                 </Button>
