@@ -12,6 +12,7 @@ import Product from "./customer/componets/Product/Product.jsx";
 import ProductDetails from "./customer/componets/ProductDetailas/ProductDetails.jsx";
 import Cart from "./customer/componets/Cart/Cart.jsx";
 import Checkout from "./customer/componets/Checkout/Checkout.js";
+import Order from "./customer/componets/Order/Order.jsx";
 
 
 const App =() => {
@@ -23,7 +24,8 @@ const App =() => {
         {/* <Product /> */}
         {/* <ProductDetails /> */}
         {/* <Cart /> */}
-        <Checkout />
+        {/* <Checkout /> */}
+        <Order />
       </div>
 
       <Footer />
