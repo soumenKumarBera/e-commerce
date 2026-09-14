@@ -11,6 +11,7 @@ import Footer from "./customer/componets/Footer/Footer";
 import Product from "./customer/componets/Product/Product.jsx";
 import ProductDetails from "./customer/componets/ProductDetailas/ProductDetails.jsx";
 import Cart from "./customer/componets/Cart/Cart.jsx";
+import Checkout from "./customer/componets/Checkout/Checkout.js";
 
 
 const App =() => {
@@ -21,7 +22,8 @@ const App =() => {
         {/* <HomePage /> */}
         {/* <Product /> */}
         {/* <ProductDetails /> */}
-        <Cart />
+        {/* <Cart /> */}
+        <Checkout />
       </div>
 
       <Footer />
