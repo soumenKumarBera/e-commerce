@@ -14,6 +14,7 @@ import { Avatar, Button, Menu, MenuItem } from "@mui/material";
 
 import { deepPurple } from "@mui/material/colors";
 import {navigation} from "../Navigation/navigation";
+import { useNavigate } from "react-router-dom";
 
 
 function classNames(...classes) {
@@ -22,6 +23,7 @@ function classNames(...classes) {
 
 const Navigations = () => {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   const [openAuthModal, setOpenAuthModal] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -45,7 +47,7 @@ const Navigations = () => {
   };
 
   const handleCategoryClick = (category, section, item, close) => {
-    // navigate(`/${category.id}/${section.id}/${item.id}`);
+    navigate(`/${category.id}/${section.id}/${item.id}`);
     close();
   };
 
@@ -54,12 +56,12 @@ const Navigations = () => {
     handleCloseUserMenu();
     dispatch(logout());
   };
-  const handleMyOrderClick = () => {
-    handleCloseUserMenu();
-    auth.user?.role === "ROLE_ADMIN"
-      ? navigate("/admin")
-      : navigate("/account/order");
-  };
+  // const handleMyOrderClick = () => {
+  //   handleCloseUserMenu();
+  //   auth.user?.role === "ROLE_ADMIN"
+  //     ? navigate("/admin")
+  //     : navigate("/account/order");
+  // };
 
   return (
     <div className="bg-white pb-10">
@@ -424,10 +426,10 @@ const Navigations = () => {
                           "aria-labelledby": "basic-button",
                         }}
                       >
-                        <MenuItem onClick={handleMyOrderClick}>
+                        <MenuItem onClick={handleCloseUserMenu}>
                           Profile
                         </MenuItem>
-                        <MenuItem onClick={handleMyOrderClick}>
+                        <MenuItem onClick={() => navigate("/account/order")}>
                           My Orders
                         </MenuItem>
                         <MenuItem onClick={handleLogout}>Logout</MenuItem>

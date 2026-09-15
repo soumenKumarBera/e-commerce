@@ -1,5 +1,5 @@
 import { MantineProvider } from "@mantine/core";
-import Navigations from "./customer/componets/Navigation/Navigation.jsx";
+
 
 
 
@@ -14,23 +14,24 @@ import Cart from "./customer/componets/Cart/Cart.jsx";
 import Checkout from "./customer/componets/Checkout/Checkout.js";
 import Order from "./customer/componets/Order/Order.jsx";
 import OderDetails from "./customer/componets/Order/OrderDetails.jsx";
+import { Route, Routes } from "react-router-dom";
+import CustomerRoutes from "./Routes/CustomerRoutes.jsx";
 
 
 const App =() => {
   return <MantineProvider>
-   
-    <Navigations />
-      <div>
-        {/* <HomePage /> */}
-        {/* <Product /> */}
-        {/* <ProductDetails /> */}
-        {/* <Cart /> */}
-        {/* <Checkout /> */}
-        {/* <Order /> */}
-        <OderDetails />
-      </div>
 
-      <Footer />
+    <Routes>
+    <Route path="/*" element={<CustomerRoutes />} />
+
+    </Routes>
+
+
+   
+   
+    
+
+
       
      
   </MantineProvider>

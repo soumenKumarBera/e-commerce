@@ -8,6 +8,7 @@ import { Center } from "@mantine/core";
 import LinearProgress from "@mui/material/LinearProgress";
 import {mens_kurta} from "../../../Data/Mens_Kurta.js"
 import HomeSectionCard from "../HomeSectionCard/HomeSectionCard.jsx";
+import { useNavigate } from "react-router-dom";
 
 const product = {
   name: "Basic Tee 6-Pack",
@@ -76,6 +77,12 @@ function classNames(...classes) {
 }
 
 const ProductDetails = () => {
+const navigate = useNavigate();
+
+const handelAddToCart =() =>{
+  navigate("/cart");
+}
+
   return (
     <div className="bg-white px-20">
       <div className="pt-6">
@@ -216,6 +223,7 @@ const ProductDetails = () => {
                 </div>
 
                 <Button
+                onClick={handelAddToCart}
                   variant="contained"
                   sx={{ px: "2rem", py: "1rem", bgcolor: "#9155fd", mt:2 }}
                 >
