@@ -33,6 +33,9 @@ public class Product {
     @Column(name = "discounted_price")
     private int discountedPrice;
 
+    @Column(name = "discounted_Percent")
+    private int discountedPercent;
+
 
     @Column(name = "quantity")
     private int quantity;

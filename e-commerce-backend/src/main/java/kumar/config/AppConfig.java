@@ -6,6 +6,8 @@ import org.jspecify.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -24,42 +26,45 @@ import java.util.Collections;
 @Configuration
 public class AppConfig {
 
-    @Autowired
-    private JwtValidator jwtValidator;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http)throws Exception{
-
+        http.csrf(AbstractHttpConfigurer::disable);
         http.authorizeHttpRequests(auth ->auth
-                .requestMatchers("/api/**").authenticated()
-                .anyRequest().permitAll()
+                .requestMatchers("/user", "/auth").permitAll()
+                .anyRequest().authenticated()
         );
-        http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore( jwtValidator, UsernamePasswordAuthenticationFilter.class)
-                .csrf(AbstractHttpConfigurer::disable)
-                .cors(cors->cors.configurationSource(new CorsConfigurationSource() {
-                    @Override
-                    public  CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
-                       CorsConfiguration cfg = new CorsConfiguration();
-
-                       cfg.setAllowedOrigins(Arrays.asList(
-                               "http://localhost:300"
-                       ));
-
-                       cfg.setAllowedMethods(Collections.singletonList("*"));
-                       cfg.setAllowCredentials(true);
-                       cfg.setExposedHeaders(Collections.singletonList("*"));
-                       cfg.setExposedHeaders(Arrays.asList("Authorization"));
-                       cfg.setMaxAge(3600L);
-
-
-                        return cfg;
-                    }
-                }));
+//        http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+//               .addFilterBefore( jwtValidator, UsernamePasswordAuthenticationFilter.class)
+//
+//                .cors(cors->cors.configurationSource(new CorsConfigurationSource() {
+//                    @Override
+//                    public  CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
+//                       CorsConfiguration cfg = new CorsConfiguration();
+//
+//                       cfg.setAllowedOrigins(Arrays.asList(
+//                               "http://localhost:300"
+//                       ));
+//
+//                       cfg.setAllowedMethods(Collections.singletonList("*"));
+//                       cfg.setAllowCredentials(true);
+//                       cfg.setExposedHeaders(Collections.singletonList("*"));
+//                       cfg.setExposedHeaders(Arrays.asList("Authorization"));
+//                       cfg.setMaxAge(3600L);
+//
+//
+//                        return cfg;
+//                    }
+//                }));
 
 
         return http.build();
 
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration){
+        return configuration.getAuthenticationManager();
     }
 
 
